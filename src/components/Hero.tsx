@@ -25,7 +25,7 @@ const strings = {
       "A Data Analyst with a Computer Science and Artificial Intelligence background, focused on transforming raw data into structured insights through Python, SQL, Excel, and Power BI.",
     exploreWork: "Explore My Work",
     viewGithub: "View GitHub",
-    resume: "Resume",
+    resume: "CV",
     title: profile.title
   },
   ar: {
@@ -35,7 +35,7 @@ const strings = {
       "محلل بيانات بخلفية في علوم الحاسب والذكاء الاصطناعي، أركّز على تحويل البيانات الخام إلى رؤى منظمة عبر Python وSQL وExcel وPower BI.",
     exploreWork: "استكشف أعمالي",
     viewGithub: "زيارة GitHub",
-    resume: "السيرة الذاتية",
+    resume: "السيرة الذاتية (CV)",
     title: "محلل بيانات"
   }
 };
@@ -89,7 +89,7 @@ export default function Hero() {
                 {s.viewGithub}
               </a>
               <a
-                href={profile.resumeUrl}
+                href={profile.cvUrl}
                 download="Adham_Reda_CV.pdf"
                 className="focus-ring inline-flex items-center gap-2 rounded-lg border border-ink-200 px-5 py-3 text-sm font-medium text-ink-900 transition-colors hover:border-ink-900 dark:border-navy-border dark:text-ink-50 dark:hover:border-ink-50"
               >

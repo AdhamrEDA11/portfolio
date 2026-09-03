@@ -95,7 +95,7 @@ export default function Navbar() {
           <ThemeToggle />
           <a
             href={profile.resumeUrl}
-            download="Adham_Reda_CV.pdf"
+            download="Adham-Reda-Resume.pdf"
             className="focus-ring rounded-lg border border-ink-200 px-4 py-2 text-sm font-medium text-ink-900 transition-colors hover:border-ink-900 dark:border-navy-border dark:text-ink-50 dark:hover:border-ink-50"
           >
             {s.resume}
@@ -147,7 +147,7 @@ export default function Navbar() {
           <div className="mt-4 flex flex-col gap-3">
             <a
               href={profile.resumeUrl}
-              download="Adham_Reda_CV.pdf"
+              download="Adham-Reda-Resume.pdf"
               className="focus-ring rounded-lg border border-ink-200 px-4 py-3 text-center text-sm font-medium text-ink-900 dark:border-navy-border dark:text-ink-50"
             >
               {s.downloadResume}

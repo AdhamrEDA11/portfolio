@@ -8,7 +8,8 @@ export const profile = {
   github: "https://github.com/AdhamrEDA11",
   whatsapp: "https://wa.me/201027653324",
   formspreeFormId: "xbgjooaa",
-  resumeUrl: "/Adham_Reda_CV.pdf"
+  resumeUrl: "/Adham-Reda-Resume.pdf",
+  cvUrl: "/Adham_Reda_CV.pdf"
 };
 
 export type Insight = { label: string; value: string };
