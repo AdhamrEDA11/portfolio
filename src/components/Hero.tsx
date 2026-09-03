@@ -25,7 +25,7 @@ const strings = {
       "A Data Analyst with a Computer Science and Artificial Intelligence background, focused on transforming raw data into structured insights through Python, SQL, Excel, and Power BI.",
     exploreWork: "Explore My Work",
     viewGithub: "View GitHub",
-    resume: "Resume",
+    resume: "CV",
     title: profile.title
   },
   ar: {
@@ -35,7 +35,7 @@ const strings = {
       "محلل بيانات بخلفية في علوم الحاسب والذكاء الاصطناعي، أركّز على تحويل البيانات الخام إلى رؤى منظمة عبر Python وSQL وExcel وPower BI.",
     exploreWork: "استكشف أعمالي",
     viewGithub: "زيارة GitHub",
-    resume: "السيرة الذاتية",
+    resume: "السيرة الذاتية (CV)",
     title: "محلل بيانات"
   }
 };
