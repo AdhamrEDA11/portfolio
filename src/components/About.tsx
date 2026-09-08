@@ -10,7 +10,7 @@ const flow = {
 const strings = {
   en: {
     heading: "About Me",
-    p1: "I'm an aspiring Data Analyst with a Computer Science and Artificial Intelligence background, currently completing the Digital Egypt Pioneers Initiative (DEPI) Data Analyst track.",
+    p1: "Data Analyst with a Computer Science and Artificial Intelligence background, and graduate of the Digital Egypt Pioneers Initiative (DEPI) Data Analyst program.",
     p2: "I work across the analytics workflow — from data cleaning and exploratory analysis to SQL querying, KPI development, data modeling, DAX, and interactive dashboard design.",
     p3: "My focus is not only on producing charts, but on understanding the business question behind the data and translating analysis into clear, actionable insights.",
     p4: "Alongside data analytics, I have experience as a web developer, including practical exposure to Firebase/Firestore and working with structured real-world data."
