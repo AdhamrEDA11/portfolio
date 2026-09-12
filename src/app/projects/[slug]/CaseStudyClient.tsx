@@ -6,6 +6,7 @@ import { ChevronDown, ArrowRight } from "lucide-react";
 import { Project, projects } from "@/lib/data";
 import { projectsAr } from "@/lib/data-ar";
 import { useLanguage } from "@/lib/language-context";
+import ProjectGallery from "@/components/ProjectGallery";
 
 const strings = {
   en: { walkthrough: "Case Study Walkthrough", recommendations: "Business Recommendations", allProjects: "All Projects", next: "Next" },
@@ -37,6 +38,10 @@ export default function CaseStudyClient({ project, index }: { project: Project; 
           </div>
         ))}
       </div>
+
+      {p.gallery && p.gallery.length > 0 && (
+        <ProjectGallery items={p.gallery} title={p.title} />
+      )}
 
       <div className="mt-14">
         <h2 className="font-display text-2xl font-semibold text-ink-900 dark:text-white">

@@ -31,6 +31,7 @@ export type Project = {
   keyResultValue: string;
   image: string;
   githubUrl?: string;
+  gallery?: { src: string; caption: string }[];
   insights: Insight[];
   workflow: { group: string; items: string[] }[];
   caseStudy: CaseStudySection[];
@@ -38,6 +39,58 @@ export type Project = {
 };
 
 export const projects: Project[] = [
+  {
+    slug: "sales-analytics-dashboard-end-to-end",
+    type: "Power BI · DAX · End-to-End Analytics",
+    title: "Sales Analytics Dashboard – End to End",
+    objective:
+      "Build a full, multi-page Power BI reporting suite covering sales, product, territory, and order-fulfillment performance from a single data model.",
+    description:
+      "Designed an end-to-end Power BI solution — star-schema data model, 25+ custom DAX measures, a custom dark theme, and a 5-page interactive report — to track $30.09M in sales across products, territories, and order operations.",
+    tools: ["Power BI", "DAX", "Data Modeling", "Report Design"],
+    datasetScale: "1,465 orders · 85,866 units · 250 products",
+    keyResultLabel: "Total Sales",
+    keyResultValue: "$30.09M",
+    image: "/images/salesdepi/overview.png",
+    gallery: [
+      { src: "/images/salesdepi/overview.png", caption: "Overview — company-wide KPIs at a glance" },
+      { src: "/images/salesdepi/sales-analysis.png", caption: "Sales Analysis — trend, YTD/QTD and growth vs. last year" },
+      { src: "/images/salesdepi/product-performance.png", caption: "Product Performance — category, sub-category and top-10 products" },
+      { src: "/images/salesdepi/territory-performance.png", caption: "Territory Performance — regional map and top territories" },
+      { src: "/images/salesdepi/orders-operations.png", caption: "Orders & Operations — fulfillment status and delivery performance" },
+      { src: "/images/salesdepi/data-model.png", caption: "Star-schema data model with a dedicated DAX measures table" }
+    ],
+    insights: [
+      { label: "Total Sales", value: "$30.09M" },
+      { label: "Total Orders", value: "1,465" },
+      { label: "Sales Growth", value: "146.56%" },
+      { label: "On-Time Delivery", value: "100%" },
+      { label: "Total Quantity", value: "85,866" },
+      { label: "Avg Order Value", value: "$20.54K" }
+    ],
+    workflow: [
+      { group: "Data Modeling", items: ["Star Schema", "Fact/Dimension Tables", "Date Table"] },
+      { group: "DAX", items: ["25+ Custom Measures", "YoY & YTD/QTD Comparisons", "Ranking & Status Logic"] },
+      { group: "Report Design", items: ["5-Page Navigation", "Custom Dark Theme", "Cross-Filtering"] }
+    ],
+    caseStudy: [
+      { heading: "Business Problem", body: ["Sales, product, territory, and fulfillment performance were scattered across raw order data with no single, decision-ready view for stakeholders."] },
+      { heading: "Data Modeling", body: ["Built a star-schema model in Power BI: a central factSales table (order, product, customer, ship method, status, and territory keys, plus sales, quantity, freight, and tax) connected to DimProduct, DimTerritory, DimShipmethod, DimStatus, and a dedicated calendar table."] },
+      { heading: "DAX Measures", body: ["Created a dedicated measures table with 25+ DAX measures, including Average Order Value, Average Monthly Sales, Sales Growth %, Sales LY/PY, QTD Sales, On-Time Delivery %, Late Orders %, and Top Product."] },
+      { heading: "Sales Analysis", body: ["Tracked total, YTD ($5.93M), and QTD ($1.76M) sales alongside a monthly sales trend and year-over-year growth reaching 146.56%."] },
+      { heading: "Product Performance", body: ["Broke down sales across 250 products by category and sub-category, surfacing the top 10 sub-categories by sales and revealing Bikes as the dominant category at 80.54% of total sales."] },
+      { heading: "Territory Performance", body: ["Mapped sales by territory and territory group, ranking the top 5 territories: Canada (35.20%), Northwest (20.45%), France (15.31%), and the United Kingdom (14.22%)."] },
+      { heading: "Orders & Operations", body: ["Monitored 1,465 orders and 85,866 units across order status (shipped, approved, in process, cancelled, rejected, backordered), freight cost, and a 7-day average delivery time at a 100% on-time delivery rate."] },
+      { heading: "Report Design", body: ["Designed a custom dark 'Sales Performance' theme applied consistently across all 5 report pages for a cohesive, presentation-ready look."] },
+      { heading: "Key Insights", body: ["Canada and Northwest together generate over 55% of total sales, Bikes alone drives 80.5% of category revenue, and delivery performance holds at 100% on-time despite the order volume."] },
+      { heading: "Business Recommendations", body: ["Prioritize account growth in Canada and Northwest given their outsized share of revenue, and diversify the category mix to reduce reliance on Bikes for the bulk of sales."] },
+      { heading: "Conclusion", body: ["The result is a single, end-to-end Power BI suite that turns raw order data into a 5-page reporting system covering sales, product, territory, and operations performance."] }
+    ],
+    recommendations: [
+      "Prioritize account growth in Canada and Northwest, which together generate over 55% of total sales",
+      "Diversify the category mix given Bikes alone drives 80.5% of total sales"
+    ]
+  },
   {
     slug: "space-tourism-booking-dashboard",
     type: "Power BI · End-to-End Analytics",
@@ -181,13 +234,13 @@ export const projects: Project[] = [
   },
   {
     slug: "superstore-sales-analysis",
-    type: "Python · SQL · Excel",
+    type: "Python · Excel",
     title: "Superstore Sales Analysis",
     objective:
       "Identify sales, profit, regional, category, and discount-related patterns in a retail order dataset.",
     description:
-      "Analyzed a 9,994-order retail dataset using Python, SQL, and Excel to identify sales, profit, regional, category, and discount-related patterns.",
-    tools: ["Python", "pandas", "SQL", "Excel"],
+      "Analyzed a 9,994-row retail dataset using Python and Excel to identify sales, profit, regional, category, and discount-related patterns.",
+    tools: ["Python", "pandas", "Excel"],
     datasetScale: "9,994 orders",
     keyResultLabel: "Total Sales",
     keyResultValue: "$2.29M",
@@ -199,15 +252,13 @@ export const projects: Project[] = [
     ],
     workflow: [
       { group: "Python", items: ["Data Cleaning", "Exploratory Data Analysis"] },
-      { group: "SQL", items: ["Join Operations", "Aggregations"] },
       { group: "Excel", items: ["Dashboard", "Slicers"] }
     ],
     caseStudy: [
       { heading: "Problem", body: ["The business needed to understand where profit was being lost despite healthy sales volume across 9,994 orders."] },
       { heading: "Data", body: ["A retail order dataset spanning region, category, ship mode, and discount level, with sales and profit recorded per order."] },
-      { heading: "Data Cleaning", body: ["Cleaned the dataset in Python with pandas, preparing it for both SQL-based aggregation and exploratory analysis."] },
-      { heading: "Analysis", body: ["Explored profit versus loss orders, the impact of discount level on profit, and regional and category-level performance."] },
-      { heading: "SQL", body: ["Used SQL joins and aggregations to validate category- and region-level sales and profit totals."] },
+      { heading: "Data Cleaning", body: ["Cleaned the dataset in Python with pandas, preparing it for exploratory analysis."] },
+      { heading: "Analysis", body: ["Explored profit versus loss orders, the impact of discount level on profit, and regional and category-level performance using pandas."] },
       { heading: "Dashboard", body: ["Built an Excel dashboard with slicers for region, category, and ship mode, visualizing profit by category, profit by region, and profit trend over time."] },
       { heading: "Key Insights", body: ["Profit turns negative once discounts exceed roughly 20–30%, and profit contribution varies substantially by region and category."] },
       { heading: "Business Recommendations", body: ["Cap discounting in categories where profit erodes fastest, and reallocate focus toward regions and categories with stronger profit-to-sales ratios."] },
