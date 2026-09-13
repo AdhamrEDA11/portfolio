@@ -239,34 +239,46 @@ export const projects: Project[] = [
     objective:
       "Identify sales, profit, regional, category, and discount-related patterns in a retail order dataset.",
     description:
-      "Analyzed a 9,994-row retail dataset using Python and Excel to identify sales, profit, regional, category, and discount-related patterns.",
-    tools: ["Python", "pandas", "Excel"],
-    datasetScale: "9,994 orders",
+      "Built an OOP-based Python pipeline (loading, cleaning, feature engineering, EDA, KPI reporting) alongside an interactive Excel dashboard to analyze 9,994 retail order records.",
+    tools: ["Python", "pandas", "matplotlib", "seaborn", "Excel"],
+    datasetScale: "9,994 records · 5,009 orders",
     keyResultLabel: "Total Sales",
     keyResultValue: "$2.29M",
-    image: "/images/superstore-dashboard.png",
+    image: "/images/superstore-gallery/excel-dashboard.png",
+    gallery: [
+      { src: "/images/superstore-gallery/excel-dashboard.png", caption: "Excel dashboard — sales & profit performance with slicers" },
+      { src: "/images/superstore-gallery/notebook-raw-data.png", caption: "Python notebook — raw dataset structure and summary statistics" },
+      { src: "/images/superstore-gallery/notebook-eda-classes.png", caption: "Object-oriented EDA pipeline (FeatureEngineer, EDAAnalyzer classes)" },
+      { src: "/images/superstore-gallery/notebook-boxplot-chart.png", caption: "Profit distribution by category (outlier-aware boxplot)" },
+      { src: "/images/superstore-gallery/notebook-scatter-chart.png", caption: "Sales vs. profit by category after outlier capping" },
+      { src: "/images/superstore-gallery/cleaned-dataset-excel.png", caption: "Feature-engineered dataset exported from the pipeline" }
+    ],
     insights: [
       { label: "Orders", value: "9,994" },
       { label: "Total Sales", value: "$2.29M" },
-      { label: "Total Profit", value: "$286K" }
+      { label: "Total Profit", value: "$286K" },
+      { label: "Profit Margin (Python)", value: "11.45%" },
+      { label: "Avg Discount (Python)", value: "14%" },
+      { label: "Avg Shipping (Python)", value: "3.96 days" }
     ],
     workflow: [
-      { group: "Python", items: ["Data Cleaning", "Exploratory Data Analysis"] },
-      { group: "Excel", items: ["Dashboard", "Slicers"] }
+      { group: "Python", items: ["OOP Data Pipeline", "Outlier Handling (IQR)", "Feature Engineering", "EDA & Visualization"] },
+      { group: "Excel", items: ["Dashboard", "Slicers", "Pivot Tables"] }
     ],
     caseStudy: [
-      { heading: "Problem", body: ["The business needed to understand where profit was being lost despite healthy sales volume across 9,994 orders."] },
-      { heading: "Data", body: ["A retail order dataset spanning region, category, ship mode, and discount level, with sales and profit recorded per order."] },
-      { heading: "Data Cleaning", body: ["Cleaned the dataset in Python with pandas, preparing it for exploratory analysis."] },
-      { heading: "Analysis", body: ["Explored profit versus loss orders, the impact of discount level on profit, and regional and category-level performance using pandas."] },
-      { heading: "Dashboard", body: ["Built an Excel dashboard with slicers for region, category, and ship mode, visualizing profit by category, profit by region, and profit trend over time."] },
-      { heading: "Key Insights", body: ["Profit turns negative once discounts exceed roughly 20–30%, and profit contribution varies substantially by region and category."] },
-      { heading: "Business Recommendations", body: ["Cap discounting in categories where profit erodes fastest, and reallocate focus toward regions and categories with stronger profit-to-sales ratios."] },
-      { heading: "Conclusion", body: ["The analysis translates 9,994 raw orders into a clear view of where discounting is destroying profit."] }
+      { heading: "Problem", body: ["The business needed to understand where profit was being lost despite healthy sales volume across 9,994 order records."] },
+      { heading: "Data", body: ["A retail order dataset spanning region, category, ship mode, and discount level, with sales and profit recorded per line item across 5,009 unique orders."] },
+      { heading: "Data Pipeline (Python)", body: ["Built a reusable, object-oriented pipeline in pandas: a loader class, a DataCleaner (missing-value imputation, deduplication, IQR-based outlier capping on sales, profit, discount and quantity), and a FeatureEngineer that added profit margin, shipping duration, and a sales-performance tier per order."] },
+      { heading: "Statistical Analysis (Python)", body: ["On the cleaned, outlier-capped dataset: total sales of $1.40M, total profit of $160.6K, an 11.45% profit margin, a 14% average discount, and a 3.96-day average shipping time. Office Supplies led sales by category and the West led by region; Paper was the most profitable sub-category and Tables the least."] },
+      { heading: "Exploratory Analysis", body: ["Used matplotlib and seaborn to visualize a correlation heatmap, sales and profit distributions, profit by category and sub-category, and sales-vs-profit relationships, plus an automated KPI report generator."] },
+      { heading: "Dashboard (Excel)", body: ["Built a separate interactive Excel dashboard directly on the full raw dataset (9,994 orders, $2.29M in sales, $286K in profit) with slicers for region, category, and ship mode, visualizing profit by category, profit by region, and profit trend over time."] },
+      { heading: "Key Insights", body: ["On the raw dashboard data, profit turns negative once discounts exceed roughly 20–30%, and profit contribution varies substantially by region and category — consistent with the Python analysis showing Office Supplies and the West as the strongest performers."] },
+      { heading: "Business Recommendations", body: ["Cap discounting in categories where profit erodes fastest, and reallocate focus toward regions and categories — like Office Supplies in the West — with stronger profit-to-sales ratios."] },
+      { heading: "Conclusion", body: ["The result is a two-part deliverable: a reusable Python pipeline for outlier-aware statistical analysis, and a raw-data Excel dashboard for interactive, day-to-day exploration."] }
     ],
     recommendations: [
       "Cap discounts above the 20–30% band where profit turns negative",
-      "Focus growth investment on the strongest profit-to-sales regions"
+      "Focus growth investment on the strongest profit-to-sales regions and categories"
     ]
   },
   {
