@@ -324,6 +324,55 @@ export const projects: Project[] = [
       "Restock fastest-selling categories (SUV, Sedan) ahead of others",
       "Review in-service turnaround time for the 64 vehicles currently held"
     ]
+  },
+  {
+    slug: "central-superstore-sales-analytics",
+    type: "SQL Server · T-SQL · Data Modeling",
+    title: "Central Superstore Sales Analytics",
+    objective:
+      "Transform transactional Superstore data into a structured, reporting-ready analytical database using SQL Server.",
+    description:
+      "Designed a star-schema data warehouse in SQL Server for the Central Superstore dataset, with dimension and fact tables, deduplication, surrogate keys, indexing, KPI views, and stored procedures for reusable reporting.",
+    tools: ["SQL Server", "T-SQL", "Data Modeling", "Analytical SQL"],
+    datasetScale: "2,323 records · 1,175 orders · 629 customers",
+    keyResultLabel: "Total Sales",
+    keyResultValue: "$501.2K",
+    image: "/images/centralsuperstore-gallery/star-schema.png",
+    gallery: [
+      { src: "/images/centralsuperstore-gallery/star-schema.png", caption: "Star-schema data model — FactSales linked to 5 dimension tables" },
+      { src: "/images/centralsuperstore-gallery/ddl-dimensions.png", caption: "DDL for the date, customer, location and product dimensions" },
+      { src: "/images/centralsuperstore-gallery/deduplication.png", caption: "Defensive deduplication with ROW_NUMBER() before loading dimensions" },
+      { src: "/images/centralsuperstore-gallery/fact-load-indexing.png", caption: "Fact table load via multi-table JOIN, plus indexing for query performance" },
+      { src: "/images/centralsuperstore-gallery/window-functions.png", caption: "Monthly sales trend with a running total via window functions" },
+      { src: "/images/centralsuperstore-gallery/stored-procedures.png", caption: "Stored procedures for reusable KPI queries" }
+    ],
+    insights: [
+      { label: "Total Sales", value: "$501.2K" },
+      { label: "Total Profit", value: "$39.7K" },
+      { label: "Profit Margin", value: "7.92%" },
+      { label: "Orders", value: "1,175" },
+      { label: "Customers", value: "629" },
+      { label: "Products", value: "1,310" }
+    ],
+    workflow: [
+      { group: "Data Modeling", items: ["Star Schema", "Fact/Dimension Tables", "Surrogate Keys", "Foreign Keys"] },
+      { group: "T-SQL", items: ["CTEs & Window Functions", "Deduplication (ROW_NUMBER)", "Views", "Stored Procedures", "Indexing"] }
+    ],
+    caseStudy: [
+      { heading: "Business Problem", body: ["Raw Central-region transactional data had no structured, query-friendly foundation for recurring sales, profitability, and customer reporting."] },
+      { heading: "Data Modeling", body: ["Designed a star schema in SQL Server: a FactSales table (order, date, customer, location, product, and ship-mode keys, plus sales, quantity, discount, and profit) connected via foreign keys to DimDate, DimCustomer, DimLocation, DimProduct, and DimShipMode, each with an IDENTITY surrogate key."] },
+      { heading: "Data Engineering", body: ["Generated a full date dimension from 2013 to 2017 with a recursive CTE, and defensively deduplicated customer and product records with ROW_NUMBER() before loading dimensions, since the same ID occasionally appeared with slightly different name text."] },
+      { heading: "Fact Loading & Optimization", body: ["Populated FactSales by joining the source table to each dimension on its natural key to resolve surrogate keys, then added nonclustered indexes on the fact table's foreign-key columns to speed up downstream queries."] },
+      { heading: "Analytical SQL", body: ["Wrote CTE-based monthly sales trends with running totals, year-over-year growth using LAG(), profitability classification with CASE, and top-customer and top-product analysis using window functions and aggregates."] },
+      { heading: "KPI Layer", body: ["Built reusable views for profit margin by category, customer behavior by segment, and monthly sales/profit trends, plus stored procedures (usp_GetProfitMarginByCategory, usp_GetSalesTrendByYear, usp_GetTopCustomers) so the same KPIs can be re-run on demand."] },
+      { heading: "Key Insights", body: ["Technology leads both sales ($170.4K) and profit ($33.7K) among the three categories, while Furniture is sold at an overall loss (-$2.9K) despite comparable sales volume ($163.8K) \u2014 a 7.92% blended profit margin across 1,175 orders."] },
+      { heading: "Business Recommendations", body: ["Investigate Furniture's pricing and discount structure given its negative profit despite strong sales volume, and prioritize Technology for continued investment given its outsized profit contribution."] },
+      { heading: "Conclusion", body: ["The result is a proper analytical database \u2014 not just a query \u2014 where sales, profitability, and customer insight can be pulled repeatedly through views and stored procedures instead of rebuilt from scratch each time."] }
+    ],
+    recommendations: [
+      "Review Furniture's discounting and cost structure \u2014 it sells nearly as much as Technology but loses money overall",
+      "Prioritize Technology for continued investment given its outsized share of total profit"
+    ]
   }
 ];
 
