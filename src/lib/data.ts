@@ -93,17 +93,23 @@ export const projects: Project[] = [
   },
   {
     slug: "space-tourism-booking-dashboard",
-    type: "Power BI · End-to-End Analytics",
+    type: "Python · Streamlit · Power BI",
     title: "Space Tourism Booking Dashboard",
     objective:
       "Analyze three years of space tourism booking data to understand revenue drivers, customer segments, and provider performance.",
     description:
-      "Built an interactive Power BI dashboard to analyze 3 years of space tourism booking data from 2024 to 2026.",
-    tools: ["Python", "SQL", "Power BI", "DAX", "Data Modeling"],
+      "Built a Streamlit app for interactive, documented data cleaning against a SQL Server backend, then modeled the cleaned data in Power BI to analyze 3 years of space tourism booking data from 2024 to 2026.",
+    tools: ["Python", "Streamlit", "SQL Server", "Power BI", "DAX", "Data Modeling"],
     datasetScale: "9.02K bookings after cleaning",
     keyResultLabel: "Total Revenue",
     keyResultValue: "$306.09B",
     image: "/images/space-tourism-dashboard.png",
+    gallery: [
+      { src: "/images/spacetourism-gallery/powerbi-dashboard.png", caption: "Power BI dashboard — revenue, bookings and provider performance" },
+      { src: "/images/spacetourism-gallery/notebook-raw-data.png", caption: "Raw booking data pulled from SQL Server via SQLAlchemy" },
+      { src: "/images/spacetourism-gallery/notebook-distributions.png", caption: "Distribution of numeric features before cleaning" },
+      { src: "/images/spacetourism-gallery/notebook-eda-functions.png", caption: "Reusable EDA and outlier-detection functions" }
+    ],
     insights: [
       { label: "Total Revenue", value: "$306.09B" },
       { label: "Bookings Analyzed", value: "9.02K" },
@@ -116,8 +122,8 @@ export const projects: Project[] = [
       { label: "Cancellation Rate", value: "12%" }
     ],
     workflow: [
-      { group: "Python", items: ["Data Cleaning", "IQR Outlier Detection", "Data Validation", "Exploratory Analysis"] },
-      { group: "SQL", items: ["KPI Validation", "Aggregations", "Business Queries"] },
+      { group: "Python / Streamlit", items: ["Interactive Cleaning App", "IQR Outlier Detection", "Before/After EDA", "Data Validation"] },
+      { group: "SQL Server", items: ["Source Extraction", "Cleaned Table Write-Back"] },
       { group: "Power BI", items: ["Data Modeling", "DAX Measures", "Interactive Dashboard", "Business Analysis"] }
     ],
     caseStudy: [
@@ -136,19 +142,19 @@ export const projects: Project[] = [
       {
         heading: "Data Cleaning",
         body: [
-          "Used Python to detect and treat outliers with the IQR method, validate field consistency, and resolve the dataset down to 9.02K clean bookings ready for analysis."
+          "Built a self-contained Streamlit app that reads the raw bookings table directly from SQL Server, profiles it column by column, and applies a documented set of cleaning rules: range validation (e.g. age 18–90, health clearance 0–100), IQR-based outlier treatment on price and physiological fields, mixed-date-format parsing, and text standardization — before writing the cleaned table back to SQL Server."
         ]
       },
       {
         heading: "Exploratory Analysis",
         body: [
-          "Explored booking volume by age group, month, and seat class in Python to surface early patterns before formal KPI validation in SQL."
+          "The same app renders before/after histograms, boxplots, countplots, and a correlation heatmap for every column, so the effect of each cleaning rule is visible rather than just asserted."
         ]
       },
       {
-        heading: "SQL Validation",
+        heading: "Structural Missingness",
         body: [
-          "Cross-checked aggregated KPIs — revenue totals, booking counts, and channel splits — against business queries in SQL to confirm the Power BI model matched source data."
+          "Handled a real edge case explicitly: post-flight rating is only imputed for confirmed bookings whose flight has already happened — every other row is left missing on purpose, since a rating can't logically exist yet."
         ]
       },
       {
@@ -414,8 +420,8 @@ export const experience = [
     location: "Cairo, Egypt · Hybrid",
     org: "Digital Egypt Pioneers Initiative (DEPI)",
     points: [
-      "Applied statistical analysis techniques on retail/service datasets using Python (pandas) as part of DEPI training, producing cleaned datasets ready for exploratory analysis.",
-      "Performed exploratory data analysis and business reporting exercises using SQL and Excel during DEPI training, translating raw data into structured summaries for stakeholder review."
+      "Applied statistical analysis techniques on retail and service datasets using Python (pandas), producing cleaned, analysis-ready datasets.",
+      "Performed exploratory data analysis and business reporting using SQL and Excel, translating raw data into structured summaries for stakeholder review."
     ]
   },
   {
@@ -434,7 +440,7 @@ export const education = {
   degree: "B.Sc. in Computer Science and Artificial Intelligence",
   school: "Benha University",
   location: "Benha, Egypt",
-  status: "Currently Pursuing — 3rd Year",
+  status: "In Progress",
   cgpa: "3.2",
   grade: "Very Good"
 };

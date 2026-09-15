@@ -10,14 +10,14 @@ const flow = {
 const strings = {
   en: {
     heading: "About Me",
-    p1: "Data Analyst with a Computer Science and Artificial Intelligence background, and graduate of the Digital Egypt Pioneers Initiative (DEPI) Data Analyst program.",
+    p1: "Data Analyst with a Computer Science and Artificial Intelligence background, and hands-on training through the Digital Egypt Pioneers Initiative (DEPI) Data Analyst track.",
     p2: "I work across the analytics workflow — from data cleaning and exploratory analysis to SQL querying, KPI development, data modeling, DAX, and interactive dashboard design.",
     p3: "My focus is not only on producing charts, but on understanding the business question behind the data and translating analysis into clear, actionable insights.",
     p4: "Alongside data analytics, I have experience as a web developer, including practical exposure to Firebase/Firestore and working with structured real-world data."
   },
   ar: {
     heading: "نبذة عني",
-    p1: "أنا محلل بيانات طموح بخلفية في علوم الحاسب والذكاء الاصطناعي، وأتابع حاليًا مسار محلل البيانات ضمن مبادرة رواد مصر الرقمية (DEPI).",
+    p1: "أنا محلل بيانات بخلفية في علوم الحاسب والذكاء الاصطناعي، ولديّ تدريب عملي من خلال مسار محلل البيانات ضمن مبادرة رواد مصر الرقمية (DEPI).",
     p2: "أعمل عبر مسار التحليل بالكامل — من تنظيف البيانات والتحليل الاستكشافي، إلى استعلامات SQL، بناء مؤشرات الأداء، نمذجة البيانات، DAX، وتصميم لوحات بيانات تفاعلية.",
     p3: "تركيزي لا يقتصر على إنتاج الرسوم البيانية، بل على فهم سؤال العمل الكامن خلف البيانات وتحويل التحليل إلى رؤى واضحة وقابلة للتنفيذ.",
     p4: "إلى جانب تحليل البيانات، لدي خبرة كمطور ويب، بما في ذلك تجربة عملية مع Firebase/Firestore والعمل مع بيانات واقعية منظمة."
