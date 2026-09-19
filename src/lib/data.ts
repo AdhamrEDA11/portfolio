@@ -288,44 +288,6 @@ export const projects: Project[] = [
     ]
   },
   {
-    slug: "car-inventory-sales-dashboard",
-    type: "Excel · Pivot Tables",
-    title: "Car Inventory & Sales Dashboard",
-    objective:
-      "Track inventory status, dealer performance, and profitability across a multi-brand car dataset.",
-    description:
-      "Built a Microsoft Excel dashboard using pivot tables and pivot charts to analyze inventory status, dealer performance, and profitability.",
-    tools: ["Microsoft Excel", "Pivot Tables", "Pivot Charts", "Dashboard Design"],
-    datasetScale: "1,000 records · 20 brands · 145 models · 10 categories",
-    keyResultLabel: "Profit Margin",
-    keyResultValue: "67%",
-    image: "/images/car-inventory-dashboard.png",
-    insights: [
-      { label: "Sold", value: "575" },
-      { label: "Available", value: "249" },
-      { label: "Reserved", value: "112" },
-      { label: "In Service", value: "64" },
-      { label: "Profit Margin", value: "67%" },
-      { label: "Avg Revenue / Sale", value: "$47.59K" }
-    ],
-    workflow: [
-      { group: "Excel", items: ["Pivot Tables", "Pivot Charts", "Dashboard Design"] }
-    ],
-    caseStudy: [
-      { heading: "Business Problem", body: ["Dealership management needed a single view of inventory status and profitability across 20 brands and 145 models."] },
-      { heading: "Data", body: ["1,000 vehicle records spanning 10 categories, with fields for brand, model, region, dealer, fuel type, transmission, and sale status."] },
-      { heading: "Data Modeling", body: ["Organized the dataset with pivot tables to summarize status, region, and dealer performance."] },
-      { heading: "Dashboard", body: ["Built an Excel dashboard showing inventory status (sold, available, reserved, in service), dealer performance, regional splits, fuel and transmission mix, and profitability."] },
-      { heading: "Key Insights", body: ["575 of 1,000 vehicles are sold at a 67% profit margin and $47.59K average revenue per sale, with SUVs and sedans as the dominant categories."] },
-      { heading: "Business Recommendations", body: ["Prioritize restocking the categories and brands with the fastest sell-through, and review the 64 vehicles currently in service for turnaround time."] },
-      { heading: "Conclusion", body: ["The dashboard gives management a real-time pivot view of inventory health and profitability without manual reporting."] }
-    ],
-    recommendations: [
-      "Restock fastest-selling categories (SUV, Sedan) ahead of others",
-      "Review in-service turnaround time for the 64 vehicles currently held"
-    ]
-  },
-  {
     slug: "central-superstore-sales-analytics",
     type: "SQL Server · T-SQL · Data Modeling",
     title: "Central Superstore Sales Analytics",
@@ -522,7 +484,7 @@ export const certifications = [
 ];
 
 export const heroStats = [
-  { value: "3", label: "End-to-End Analytics Projects" },
+  { value: "5", label: "End-to-End Analytics Projects" },
   { value: "4", label: "Core Analytics Tools" },
   { value: "3", label: "Certifications Earned" },
   { value: "Power BI · SQL · Python · Excel", label: "Toolkit" }
