@@ -40,6 +40,62 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "blinkit-business-analytics-dashboard",
+    type: "SQL Server · Power BI · DAX",
+    title: "Blinkit Business Analytics Dashboard",
+    objective:
+      "Turn a large quick-commerce dataset into a single, decision-ready view of orders, customers, products, delivery, inventory, and marketing performance.",
+    description:
+      "Built the full pipeline on ~250K rows: cleaned and standardized the raw data in SQL Server, modeled fact and dimension tables with a calendar table, then delivered a 7-page interactive Power BI report with custom DAX measures.",
+    tools: ["SQL Server", "T-SQL", "Power BI", "DAX", "Data Modeling"],
+    datasetScale: "~250K rows · 12 SQL Server tables · 50K orders",
+    keyResultLabel: "Total Revenue",
+    keyResultValue: "$232M",
+    image: "/images/blinkit-gallery/overview.png",
+    gallery: [
+      { src: "/images/blinkit-gallery/overview.png", caption: "Overview — revenue, orders, customers and delivery status at a glance" },
+      { src: "/images/blinkit-gallery/orders.png", caption: "Orders Analytics — payment mix, order value bands and hourly demand" },
+      { src: "/images/blinkit-gallery/customers.png", caption: "Customer Analytics — retention, segments, feedback and sentiment" },
+      { src: "/images/blinkit-gallery/products.png", caption: "Product Analytics — category mix, top products and margin" },
+      { src: "/images/blinkit-gallery/delivery.png", caption: "Delivery Analytics — on-time rate, delays and delivery operations detail" },
+      { src: "/images/blinkit-gallery/inventory.png", caption: "Inventory Analytics — stock received, damaged stock and category breakdown" },
+      { src: "/images/blinkit-gallery/marketing.png", caption: "Marketing Performance — spend, conversions, channel ROI and campaigns" },
+      { src: "/images/blinkit-gallery/data-model.png", caption: "Power BI data model — relationships across fact, dimension and calendar tables" },
+      { src: "/images/blinkit-gallery/sql-server-diagram.png", caption: "SQL Server database diagram of the blinkit_depi database" },
+      { src: "/images/blinkit-gallery/tsql-script.png", caption: "T-SQL working script — joins, aggregations and a lookup table build" },
+      { src: "/images/blinkit-gallery/landing-page.png", caption: "Report landing page with navigation across all 7 pages" }
+    ],
+    insights: [
+      { label: "Total Revenue", value: "$232M" },
+      { label: "Total Orders", value: "50K" },
+      { label: "Customers", value: "21.67K" },
+      { label: "On-Time Delivery", value: "70.23%" },
+      { label: "Customer Retention", value: "68.38%" },
+      { label: "Avg Customer Rating", value: "4.05" }
+    ],
+    workflow: [
+      { group: "SQL Server", items: ["Data Cleaning", "Format Standardization", "Fact & Dimension Tables", "Calendar Table"] },
+      { group: "Power BI", items: ["Data Modeling", "Custom DAX Measures", "7-Page Interactive Report", "Custom Theme & Navigation"] }
+    ],
+    caseStudy: [
+      { heading: "Business Problem", body: ["Order, customer, product, delivery, inventory, and marketing data lived in separate raw tables, with no single view for tracking how the business was performing from 2023 to 2025."] },
+      { heading: "Data", body: ["Around 250K rows across a 12-table SQL Server database (blinkit_depi), with the largest tables near 150K rows and several near 50K, covering 50K orders, 21.67K customers, 237 products in 11 categories, delivery performance, daily inventory, customer feedback, and marketing campaigns."] },
+      { heading: "Data Cleaning & Standardization (SQL Server)", body: ["Cleaned the raw data and standardized formats directly in SQL Server before it reached the reporting layer, so every table joined consistently."] },
+      { heading: "Data Modeling", body: ["Built fact and dimension tables, a calendar table for time intelligence, and lookup tables such as payment method, then connected them into a relational model in Power BI that drives every page of the report."] },
+      { heading: "Orders & Revenue", body: ["Tracked $232M in revenue across 50K orders with a $4.65K average order value, split almost evenly across four payment methods: Wallet (25.35%), UPI (25.05%), Card (24.83%), and Cash (24.77%)."] },
+      { heading: "Customers", body: ["Analyzed 21.67K customers with a 68.38% retention rate and a 4.05 average rating: 59.63% of feedback is positive and 14.4% negative, with customer segments (Premium, New, Regular, Inactive) each holding roughly a quarter of the base."] },
+      { heading: "Delivery Performance", body: ["70.23% of deliveries arrive on time, 19.79% are slightly delayed, and 9.98% are significantly delayed, at an average delay of 4.37 minutes over an average distance of 2.75 km."] },
+      { heading: "Products, Inventory & Marketing", body: ["Broke down revenue and margin (29.62% average) across 237 products, monitored stock received and damaged stock by category and quarter, and evaluated $741.1K in marketing spend: 7M impressions, 2M clicks, and 544K conversions (31.51% conversion rate), with channel ROI holding near 300% across SMS, Social Media, App, and Email."] },
+      { heading: "Key Insights", body: ["Nearly 30% of deliveries (14.88K) arrive late, revenue is spread evenly across payment methods and marketing channels, and about a quarter of the customer base (5,478) is inactive."] },
+      { heading: "Business Recommendations", body: ["Focus operational effort on the roughly 30% of delayed deliveries, and target the inactive customer segment with reactivation campaigns."] },
+      { heading: "Conclusion", body: ["The result is an end-to-end solution, from raw data in SQL Server to a 7-page Power BI report, that lets the business monitor sales, customers, delivery, inventory, and marketing in one place."] }
+    ],
+    recommendations: [
+      "Focus operations on the ~30% of deliveries that arrive late (14.88K orders)",
+      "Run reactivation campaigns for the inactive segment (5,478 customers, about 25% of the base)"
+    ]
+  },
+  {
     slug: "sales-analytics-dashboard-end-to-end",
     type: "Power BI · DAX · End-to-End Analytics",
     title: "Sales Analytics Dashboard – End to End",
@@ -484,7 +540,7 @@ export const certifications = [
 ];
 
 export const heroStats = [
-  { value: "5", label: "End-to-End Analytics Projects" },
+  { value: "6", label: "End-to-End Analytics Projects" },
   { value: "4", label: "Core Analytics Tools" },
   { value: "3", label: "Certifications Earned" },
   { value: "Power BI · SQL · Python · Excel", label: "Toolkit" }
