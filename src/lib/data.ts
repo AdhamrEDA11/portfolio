@@ -40,6 +40,59 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "agritech-egypt-agriculture-2000-2024",
+    type: "SQL Server · T-SQL · Power BI · DAX",
+    title: "AgriTech — Egypt's Agriculture, 2000–2024",
+    objective:
+      "Bring 25 years of public data on crops, irrigation, climate, land and population into one view of Egyptian agriculture.",
+    description:
+      "Took 8 raw files from FAOSTAT, the World Bank and NASA's MERRA-2 (about 235K rows) through profiling, cleaning and a 9-table star schema in SQL Server, then built a 7-page interactive Power BI report with custom DAX.",
+    tools: ["SQL Server", "T-SQL", "Power BI", "DAX", "Data Modeling"],
+    datasetScale: "~235K raw rows · 8 source tables · 9 star-schema tables",
+    keyResultLabel: "Production Growth",
+    keyResultValue: "+51.8%",
+    image: "/images/agritech-gallery/overview.png",
+    gallery: [
+      { src: "/images/agritech-gallery/main-landing.png", caption: "Report landing page — the 6 analysis pages and headline KPIs" },
+      { src: "/images/agritech-gallery/overview.png", caption: "Overview — production, harvested area, yield, irrigation and population" },
+      { src: "/images/agritech-gallery/production-crops.png", caption: "Production & Crops — yields, top crops and year-over-year change" },
+      { src: "/images/agritech-gallery/irrigation-water.png", caption: "Irrigation & Water — equipped vs. actually irrigated land and utilization" },
+      { src: "/images/agritech-gallery/climate-agriculture.png", caption: "Climate & Agriculture — rainfall, temperature and seasonality" },
+      { src: "/images/agritech-gallery/sustainability-food-security.png", caption: "Sustainability & Food Security — CO2, fertilizer, population and output per capita" },
+      { src: "/images/agritech-gallery/soil-natural-resources.png", caption: "Soil & Natural Resources — organic carbon, pH and arable land" },
+      { src: "/images/agritech-gallery/powerbi-data-model.png", caption: "Power BI data model — 4 fact tables around 5 dimensions" },
+      { src: "/images/agritech-gallery/sql-server-diagram.png", caption: "SQL Server database diagram — the star schema with primary and foreign keys" }
+    ],
+    insights: [
+      { label: "Production", value: "64.57M → 98.02M t" },
+      { label: "Harvested Area", value: "+28.7%" },
+      { label: "Avg Yield", value: "+18.0%" },
+      { label: "Crops Tracked", value: "78" },
+      { label: "Dashboard Pages", value: "7" },
+      { label: "Star-Schema Tables", value: "9" }
+    ],
+    workflow: [
+      { group: "SQL Server", items: ["Data Profiling", "Cleaning & Deduplication", "Fact & Dimension Tables", "Calendar Table"] },
+      { group: "Power BI", items: ["Star-Schema Modeling", "Custom DAX Measures", "7-Page Interactive Report"] }
+    ],
+    caseStudy: [
+      { heading: "Business Problem", body: ["Public data on Egypt's crops, irrigation, climate, land and population sat in separate raw files from three different providers, with no shared structure for tracking 25 years of agricultural change in one place."] },
+      { heading: "Data", body: ["8 raw tables totaling roughly 235K rows from FAOSTAT (crops and livestock, irrigated land), the World Bank (arable land, CO2, fertilizer, population) and NASA's MERRA-2 climate grids (rainfall, temperature), arriving in three different shapes: long FAOSTAT rows, wide World Bank year-columns, and wide MERRA-2 month-columns."] },
+      { heading: "Profiling (SQL Server)", body: ["Profiled every raw table before touching it — row counts, distinct values, NULL rates and data-quality flags. The FAOSTAT profiling step caught a real error in the project brief: codes 5111/5114 were assumed to be irrigated/rainfed area, but the data showed they were livestock and bee stock counts, not land at all. Irrigation was pulled from the correct source file instead."] },
+      { heading: "Cleaning", body: ["Standardized each source to Egypt, 2000–2024, with typed numeric columns and dropped notes/duplicate columns. The FAOSTAT table was filtered down to just the three real crop metrics (area harvested, yield, production) from 22,568 raw rows to 7,185 clean rows across 140 items."] },
+      { heading: "Star-Schema Modeling", body: ["Built 5 dimension tables (Dim_Year, Dim_Item, Dim_Location, Dim_Country, Calendar) and 4 fact tables (Fact_Crops, Fact_Irrigated, Fact_Country_Year, Fact_Climate) with surrogate keys and a defined grain for each — for example Fact_Crops uses MAX(CASE WHEN...) to pivot three FAOSTAT element rows into three measure columns per item-year, and Fact_Climate resolves a 3-letter month code to a YearMonthKey with CHARINDEX to join rainfall and temperature on one integer."] },
+      { heading: "Validation", body: ["Ran a single UNION ALL query across all 16 raw, clean and model tables to confirm row counts and year ranges matched expectations before building the report — the whole script is re-runnable, dropping and rebuilding every object from the top."] },
+      { heading: "Power BI Report", body: ["Modeled the star schema in Power BI and built a 7-page report (Main, Overview, Production & Crops, Irrigation & Water, Climate & Agriculture, Sustainability & Food Security, Soil & Natural Resources) sharing one navigation bar, KPI-card layout and visual template across every page."] },
+      { heading: "Key Insights", body: ["From 2000 to 2024, production rose 51.8% (64.57M to 98.02M t) while harvested area grew only 28.7%, pointing to yield gains (+18.0%) as the larger driver. Crop output per person fell from 884 kg to 841 kg even as production grew, because population grew faster (+59.5%). Irrigation utilization sits at 85.38% of equipped land, with a gap of 586.71K ha unused."] },
+      { heading: "Business Recommendations", body: ["Prioritize yield-boosting measures over area expansion, since yield gains already outpace area growth as the main driver of production. Target the 586.71K ha irrigation gap to close the difference between equipped and actually irrigated land."] },
+      { heading: "Conclusion", body: ["The result is a full pipeline from three raw public data sources to a governed star schema in SQL Server and a 7-page Power BI report, giving a single, validated view of Egyptian agriculture across production, irrigation, climate, sustainability and soil."] }
+    ],
+    recommendations: [
+      "Prioritize yield-boosting measures over area expansion — yield growth (+18.0%) already outpaces harvested-area growth (+28.7%) in driving production",
+      "Target the 586.71K ha irrigation gap to lift utilization above its current 85.38%"
+    ]
+  },
+  {
     slug: "blinkit-business-analytics-dashboard",
     type: "SQL Server · Power BI · DAX",
     title: "Blinkit Business Analytics Dashboard",
@@ -540,7 +593,7 @@ export const certifications = [
 ];
 
 export const heroStats = [
-  { value: "6", label: "End-to-End Analytics Projects" },
+  { value: "7", label: "End-to-End Analytics Projects" },
   { value: "4", label: "Core Analytics Tools" },
   { value: "3", label: "Certifications Earned" },
   { value: "Power BI · SQL · Python · Excel", label: "Toolkit" }
