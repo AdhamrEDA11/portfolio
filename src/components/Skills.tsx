@@ -1,7 +1,7 @@
 "use client";
 
 import { ReactNode } from "react";
-import { Database, FileSpreadsheet, BarChart3, TrendingUp, LucideIcon } from "lucide-react";
+import { Database, FileSpreadsheet, BarChart3, TrendingUp, LayoutDashboard, LucideIcon } from "lucide-react";
 import { skillCategories } from "@/lib/data";
 import { skillCategoriesAr } from "@/lib/data-ar";
 import { useLanguage } from "@/lib/language-context";
@@ -40,6 +40,11 @@ const iconBadges: Record<string, Badge> = {
     bg: "#F2C811",
     accentText: "#B45309",
     render: (size) => <BarChart3 size={size} color="#2C2C2C" strokeWidth={2.4} />
+  },
+  Tableau: {
+    bg: "#1F3A5F",
+    accentText: "#E97627",
+    render: (size) => <LayoutDashboard size={size} color="#E97627" strokeWidth={2.4} />
   },
   SQL: {
     bg: "#0EA5A4",

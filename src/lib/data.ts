@@ -477,6 +477,21 @@ export const skillCategories = [
     ]
   },
   {
+    category: "Tableau",
+    groups: [
+      {
+        title: "Key Skills:",
+        items: [
+          "Data Visualization",
+          "Interactive Dashboards",
+          "Calculated Fields",
+          "Connecting to Multiple Data Sources",
+          "Designing clear, insight-driven dashboards for business reporting"
+        ]
+      }
+    ]
+  },
+  {
     category: "SQL",
     groups: [
       {

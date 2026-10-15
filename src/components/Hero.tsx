@@ -22,7 +22,7 @@ const strings = {
     hi: "Hi,",
     imPrefix: "I'm ",
     intro:
-      "A Data Analyst with a Computer Science and Artificial Intelligence background, focused on transforming raw data into structured insights through Python, SQL, Excel, and Power BI.",
+      "A Data Analyst with a Computer Science and Artificial Intelligence background, focused on transforming raw data into structured insights through Python, SQL, Excel, Power BI, and Tableau.",
     exploreWork: "Explore My Work",
     viewGithub: "View GitHub",
     resume: "CV",
@@ -32,7 +32,7 @@ const strings = {
     hi: "أهلاً،",
     imPrefix: "أنا ",
     intro:
-      "محلل بيانات بخلفية في علوم الحاسب والذكاء الاصطناعي، أركّز على تحويل البيانات الخام إلى رؤى منظمة عبر Python وSQL وExcel وPower BI.",
+      "محلل بيانات بخلفية في علوم الحاسب والذكاء الاصطناعي، أركّز على تحويل البيانات الخام إلى رؤى منظمة عبر Python وSQL وExcel وPower BI وTableau.",
     exploreWork: "استكشف أعمالي",
     viewGithub: "زيارة GitHub",
     resume: "السيرة الذاتية (CV)",

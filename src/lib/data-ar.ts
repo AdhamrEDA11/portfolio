@@ -367,6 +367,21 @@ export const skillCategoriesAr = [
     ]
   },
   {
+    category: "Tableau",
+    groups: [
+      {
+        title: "المهارات الأساسية:",
+        items: [
+          "تصور البيانات",
+          "لوحات بيانات تفاعلية",
+          "الحقول المحسوبة (Calculated Fields)",
+          "الاتصال بمصادر بيانات متعددة",
+          "تصميم لوحات بيانات واضحة تدعم القرار لتقارير الأعمال"
+        ]
+      }
+    ]
+  },
+  {
     category: "SQL",
     groups: [
       {

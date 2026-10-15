@@ -16,12 +16,12 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: "Adham Reda | Data Analyst Portfolio",
   description:
-    "Data Analyst portfolio showcasing Python, SQL, Power BI, Excel, DAX, data cleaning, exploratory analysis, KPI reporting, and interactive dashboards.",
+    "Data Analyst portfolio showcasing Python, SQL, Power BI, Tableau, Excel, DAX, data cleaning, exploratory analysis, KPI reporting, and interactive dashboards.",
   alternates: { canonical: "/" },
   openGraph: {
     title: "Adham Reda | Data Analyst Portfolio",
     description:
-      "Data Analyst portfolio showcasing Python, SQL, Power BI, Excel, DAX, data cleaning, exploratory analysis, KPI reporting, and interactive dashboards.",
+      "Data Analyst portfolio showcasing Python, SQL, Power BI, Tableau, Excel, DAX, data cleaning, exploratory analysis, KPI reporting, and interactive dashboards.",
     url: siteUrl,
     siteName: "Adham Reda — Data Analyst",
     type: "website"
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Adham Reda | Data Analyst Portfolio",
     description:
-      "Data Analyst portfolio showcasing Python, SQL, Power BI, Excel, DAX, data cleaning, exploratory analysis, KPI reporting, and interactive dashboards."
+      "Data Analyst portfolio showcasing Python, SQL, Power BI, Tableau, Excel, DAX, data cleaning, exploratory analysis, KPI reporting, and interactive dashboards."
   },
   icons: { icon: "/favicon.svg" }
 };
