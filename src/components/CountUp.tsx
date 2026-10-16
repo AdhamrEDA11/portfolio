@@ -2,46 +2,56 @@
 
 import { useEffect, useRef, useState } from "react";
 
-export default function CountUp({ value }: { value: string }) {
-  const match = value.match(/^([^\d]*)([\d,.]+)(.*)$/);
+const NUMBER = /\d[\d,]*(?:\.\d+)?/g;
+
+export default function CountUp({ value, duration = 1100 }: { value: string; duration?: number }) {
+  const tokens = value.match(NUMBER) ?? [];
+  const animatable = tokens.length === 1;
   const ref = useRef<HTMLSpanElement>(null);
-  const [display, setDisplay] = useState(match ? `${match[1]}0${match[3]}` : value);
+  const [display, setDisplay] = useState(value);
 
   useEffect(() => {
-    if (!match || !ref.current) return;
-    const target = parseFloat(match[2].replace(/,/g, ""));
-    const hasDecimals = match[2].includes(".");
-    const prefix = match[1];
-    const suffix = match[3];
-    let frame: number;
+    if (!animatable || !ref.current) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const token = tokens[0];
+    const decimals = token.includes(".") ? token.split(".")[1].length : 0;
+    const grouped = token.includes(",");
+    const target = parseFloat(token.replace(/,/g, ""));
+    const [before, after] = value.split(token);
+
+    const format = (n: number) =>
+      n.toLocaleString("en-US", {
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals,
+        useGrouping: grouped
+      });
+
+    setDisplay(`${before}${format(0)}${after}`);
+
+    let frame = 0;
     const observer = new IntersectionObserver(
       (entries) => {
         if (!entries[0].isIntersecting) return;
-        const duration = 900;
+        observer.disconnect();
         const start = performance.now();
         const tick = (now: number) => {
-          const progress = Math.min(1, (now - start) / duration);
-          const eased = 1 - Math.pow(1 - progress, 3);
-          const current = target * eased;
-          const formatted = hasDecimals
-            ? current.toFixed(1)
-            : Math.round(current).toLocaleString();
-          setDisplay(`${prefix}${formatted}${suffix}`);
-          if (progress < 1) frame = requestAnimationFrame(tick);
+          const p = Math.min(1, (now - start) / duration);
+          const eased = 1 - Math.pow(1 - p, 4);
+          setDisplay(p < 1 ? `${before}${format(target * eased)}${after}` : value);
+          if (p < 1) frame = requestAnimationFrame(tick);
         };
         frame = requestAnimationFrame(tick);
-        observer.disconnect();
       },
-      { threshold: 0.4 }
+      { threshold: 0.5 }
     );
     observer.observe(ref.current);
     return () => {
       observer.disconnect();
       cancelAnimationFrame(frame);
     };
-  }, [match]);
-
-  if (!match) return <span>{value}</span>;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value, duration]);
 
   return <span ref={ref}>{display}</span>;
 }

@@ -96,3 +96,118 @@ body {
 ::-webkit-scrollbar-thumb {
   @apply bg-ink-300/50 dark:bg-navy-700 rounded-full;
 }
+
+/* ---------- Projects: dashboard stage effects ---------- */
+
+/* one-time reveal of the dashboard screenshot, left-to-right wipe */
+@keyframes stage-wipe {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* thin scan line that crosses the screenshot once as it is revealed */
+@keyframes stage-scan {
+  0% {
+    left: 0%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
+}
+
+.stage-hidden {
+  clip-path: inset(0 100% 0 0);
+}
+
+.stage-in {
+  animation: stage-wipe 1.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.stage-scan-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 2px;
+  opacity: 0;
+  background: linear-gradient(to bottom, transparent, rgb(34 211 238), transparent);
+  box-shadow: 0 0 18px 4px rgba(34, 211, 238, 0.45);
+  pointer-events: none;
+}
+
+.stage-in .stage-scan-line,
+.stage-scan-run {
+  animation: stage-scan 1.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* cursor-following glare + card spotlight (driven by --mx / --my set in JS) */
+.tilt-glare {
+  background: radial-gradient(
+    420px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(255, 255, 255, 0.22),
+    transparent 55%
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  mix-blend-mode: soft-light;
+  pointer-events: none;
+}
+
+.tilt-active .tilt-glare {
+  opacity: 1;
+}
+
+.card-spotlight {
+  background: radial-gradient(
+    520px circle at var(--cx, 50%) var(--cy, 50%),
+    rgba(56, 189, 248, 0.14),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.card-live:hover .card-spotlight {
+  opacity: 1;
+}
+
+/* accordion height animation without measuring */
+.acc-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.acc-panel[data-open="true"] {
+  grid-template-rows: 1fr;
+}
+
+.acc-panel > div {
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stage-hidden {
+    clip-path: none;
+  }
+  .stage-in,
+  .stage-in .stage-scan-line {
+    animation: none !important;
+  }
+  .stage-scan-line {
+    display: none;
+  }
+}

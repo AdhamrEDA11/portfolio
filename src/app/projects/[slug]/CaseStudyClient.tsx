@@ -7,6 +7,7 @@ import { Project, projects } from "@/lib/data";
 import { projectsAr } from "@/lib/data-ar";
 import { useLanguage } from "@/lib/language-context";
 import ProjectGallery from "@/components/ProjectGallery";
+import CountUp from "@/components/CountUp";
 
 const strings = {
   en: { walkthrough: "Case Study Walkthrough", recommendations: "Business Recommendations", allProjects: "All Projects", next: "Next" },
@@ -29,11 +30,12 @@ export default function CaseStudyClient({ project, index }: { project: Project; 
         {p.insights.map((insight) => (
           <div
             key={insight.label}
-            className="rounded-xl border border-ink-100 bg-white px-5 py-4 dark:border-navy-border dark:bg-navy-850"
+            className="group relative overflow-hidden rounded-xl border border-ink-100 bg-white px-5 py-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-accent-blue/40 hover:shadow-lg dark:border-navy-border dark:bg-navy-850"
           >
+            <span className="absolute inset-x-0 top-0 h-[2px] origin-left scale-x-0 bg-gradient-to-r from-accent-blue to-accent-cyan transition-transform duration-500 group-hover:scale-x-100 rtl:origin-right" />
             <span className="text-xs text-ink-400">{insight.label}</span>
             <div className="num mt-1 text-lg font-semibold text-ink-900 dark:text-white">
-              {insight.value}
+              <CountUp value={insight.value} />
             </div>
           </div>
         ))}
@@ -47,41 +49,63 @@ export default function CaseStudyClient({ project, index }: { project: Project; 
         <h2 className="font-display text-2xl font-semibold text-ink-900 dark:text-white">
           {s.walkthrough}
         </h2>
-        <div className="mt-6 divide-y divide-ink-100 rounded-2xl border border-ink-100 dark:divide-navy-border dark:border-navy-border">
-          {p.caseStudy.map((section, i) => {
-            const isOpen = openIndex === i;
-            return (
-              <div key={section.heading}>
-                <button
-                  onClick={() => setOpenIndex(isOpen ? null : i)}
-                  aria-expanded={isOpen}
-                  className="focus-ring flex w-full items-center justify-between gap-4 px-5 py-4 text-left sm:px-6"
-                >
-                  <span className="flex items-center gap-4">
-                    <span className="num text-xs text-accent-blue dark:text-accent-cyan">
-                      {String(i + 1).padStart(2, "0")}
+        <div className="relative mt-6">
+          <span
+            aria-hidden="true"
+            className="absolute bottom-6 top-6 w-px bg-ink-100 ltr:left-[2rem] rtl:right-[2rem] dark:bg-navy-border sm:ltr:left-[2.25rem] sm:rtl:right-[2.25rem]"
+          />
+          <div className="divide-y divide-ink-100 rounded-2xl border border-ink-100 bg-white/40 dark:divide-navy-border dark:border-navy-border dark:bg-transparent">
+            {p.caseStudy.map((section, i) => {
+              const isOpen = openIndex === i;
+              return (
+                <div key={section.heading} className="relative">
+                  <button
+                    onClick={() => setOpenIndex(isOpen ? null : i)}
+                    aria-expanded={isOpen}
+                    className="focus-ring group flex w-full items-center justify-between gap-4 px-4 py-4 text-start transition-colors hover:bg-ink-50/70 dark:hover:bg-navy-850/70 sm:px-5"
+                  >
+                    <span className="flex items-center gap-4">
+                      <span
+                        className={`num relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border text-xs transition-all duration-300 ${
+                          isOpen
+                            ? "scale-110 border-accent-blue bg-accent-blue text-white shadow-[0_0_0_4px_rgba(56,189,248,0.18)] dark:border-accent-cyan dark:bg-accent-cyan dark:text-navy-950"
+                            : "border-ink-200 bg-white text-ink-500 group-hover:border-accent-blue/60 dark:border-navy-border dark:bg-navy-950 dark:text-ink-300"
+                        }`}
+                      >
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <span
+                        className={`text-sm font-medium transition-colors sm:text-base ${
+                          isOpen ? "text-accent-blue dark:text-accent-cyan" : "text-ink-900 dark:text-white"
+                        }`}
+                      >
+                        {section.heading}
+                      </span>
                     </span>
-                    <span className="text-sm font-medium text-ink-900 dark:text-white sm:text-base">
-                      {section.heading}
-                    </span>
-                  </span>
-                  <ChevronDown
-                    size={18}
-                    className={`shrink-0 text-ink-400 transition-transform ${isOpen ? "rotate-180" : ""}`}
-                  />
-                </button>
-                {isOpen && (
-                  <div className="px-5 pb-5 sm:px-6 sm:pl-[4.25rem]">
-                    {section.body.map((para, j) => (
-                      <p key={j} className="text-sm leading-relaxed text-ink-600 dark:text-ink-300">
-                        {para}
-                      </p>
-                    ))}
+                    <ChevronDown
+                      size={18}
+                      className={`shrink-0 text-ink-400 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+                    />
+                  </button>
+                  <div className="acc-panel" data-open={isOpen} aria-hidden={!isOpen}>
+                    <div>
+                      <div
+                        className={`px-4 pb-5 transition-all duration-500 ltr:sm:pl-[4.25rem] rtl:sm:pr-[4.25rem] sm:px-5 ${
+                          isOpen ? "translate-y-0 opacity-100" : "-translate-y-1 opacity-0"
+                        }`}
+                      >
+                        {section.body.map((para, j) => (
+                          <p key={j} className="text-sm leading-relaxed text-ink-600 dark:text-ink-300">
+                            {para}
+                          </p>
+                        ))}
+                      </div>
+                    </div>
                   </div>
-                )}
-              </div>
-            );
-          })}
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
 
@@ -93,8 +117,9 @@ export default function CaseStudyClient({ project, index }: { project: Project; 
           {p.recommendations.map((rec, i) => (
             <div
               key={i}
-              className="rounded-xl border border-ink-100 bg-ink-50/50 p-5 dark:border-navy-border dark:bg-navy-900/40"
+              className="group relative overflow-hidden rounded-xl border border-ink-100 bg-ink-50/50 p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-accent-blue/40 hover:shadow-md dark:border-navy-border dark:bg-navy-900/40"
             >
+              <span className="absolute inset-y-0 w-[3px] origin-top scale-y-0 bg-gradient-to-b from-accent-blue to-accent-cyan transition-transform duration-500 group-hover:scale-y-100 ltr:left-0 rtl:right-0" />
               <p className="text-sm leading-relaxed text-ink-700 dark:text-ink-200">{rec}</p>
             </div>
           ))}

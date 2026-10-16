@@ -28,7 +28,7 @@ export default function CaseStudyHeader({ project, index }: { project: Project; 
       </Link>
 
       <div className="mt-6 max-w-3xl">
-        <span className="text-xs font-medium uppercase tracking-wide text-accent-blue dark:text-accent-cyan">
+        <span className="text-xs font-medium text-accent-blue dark:text-accent-cyan">
           {p.type}
         </span>
         <h1 className="mt-2 font-display text-3xl font-semibold tracking-tight text-ink-900 dark:text-white sm:text-4xl">
@@ -68,7 +68,7 @@ export default function CaseStudyHeader({ project, index }: { project: Project; 
       </div>
 
       <div className="relative mt-10 w-full overflow-hidden rounded-2xl border border-ink-100 bg-ink-50 dark:border-navy-border dark:bg-navy-900">
-        <div className="relative aspect-[16/10] w-full sm:aspect-[16/9]">
+        <div className="stage-in relative aspect-[16/10] w-full sm:aspect-[16/9]">
           <Image
             src={p.image}
             alt={`${p.title} dashboard`}
@@ -77,6 +77,7 @@ export default function CaseStudyHeader({ project, index }: { project: Project; 
             className="object-contain"
             priority
           />
+          <span className="stage-scan-line" aria-hidden="true" />
         </div>
       </div>
     </div>
